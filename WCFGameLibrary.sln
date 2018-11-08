@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFGameLibrary.SelfHost", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFGameLibrary.ISSHost", "WCFGameLibrary.ISSHost\WCFGameLibrary.ISSHost.csproj", "{415690B6-7523-48AA-B3A8-C885C2BA105F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFGameLibrary.Client", "WCFGameLibrary.Client\WCFGameLibrary.Client.csproj", "{80DE0C87-4FAF-418B-BD86-F0C5C2104FC5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{415690B6-7523-48AA-B3A8-C885C2BA105F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{415690B6-7523-48AA-B3A8-C885C2BA105F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{415690B6-7523-48AA-B3A8-C885C2BA105F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80DE0C87-4FAF-418B-BD86-F0C5C2104FC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80DE0C87-4FAF-418B-BD86-F0C5C2104FC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80DE0C87-4FAF-418B-BD86-F0C5C2104FC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80DE0C87-4FAF-418B-BD86-F0C5C2104FC5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
