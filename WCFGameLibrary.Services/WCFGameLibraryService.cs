@@ -31,10 +31,6 @@ namespace WCFGameLibrary.Services
         {
             return _context.Games.ToList();
         }
-        public List<Gawerewrwerme> GetAllGames()
-        {
-            return _context.Games.ToList();
-        }
 
         [OperationBehavior(TransactionScopeRequired = true)]
         public void Save()
