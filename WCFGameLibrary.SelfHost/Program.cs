@@ -11,13 +11,16 @@ namespace WCFGameLibrary.SelfHost
         {
             try
             {
-                ServiceHost host = new ServiceHost(typeof(WCFGameLibraryService));
-                host.Open();
-                Console.WriteLine("Press any key to exit.");
-                Console.ReadKey();
-                host.Close();
+                using (ServiceHost host = new ServiceHost(typeof(WCFGameLibraryService)))
+                {
+                    host.Open();
+                    Console.WriteLine("Self hosting!");
+                    Console.WriteLine("Press any key to exit.");
+                    Console.ReadKey();
+                    host.Close();
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
             }

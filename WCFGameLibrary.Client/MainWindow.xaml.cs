@@ -23,6 +23,7 @@ namespace WCFGameLibrary.Client
         public MainWindow()
         {
             InitializeComponent();
+            MainWindowViewModel vm = new MainWindowViewModel();
         }
     }
 }

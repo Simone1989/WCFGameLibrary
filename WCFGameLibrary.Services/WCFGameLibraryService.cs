@@ -21,12 +21,7 @@ namespace WCFGameLibrary.Services
         {
             throw new NotImplementedException();
         }
-
-        public void Dispose()
-        {
-            _context.Dispose();
-        }
-
+        
         public List<Game> GetAllGames()
         {
             return _context.Games.ToList();
@@ -36,6 +31,11 @@ namespace WCFGameLibrary.Services
         public void Save()
         {
             throw new NotImplementedException();
+        }
+
+        public void Dispose()
+        {
+            _context.Dispose();
         }
     }
 }

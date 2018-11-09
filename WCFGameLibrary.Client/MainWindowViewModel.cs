@@ -14,6 +14,7 @@ namespace WCFGameLibrary.Client
     {
         public MainWindowViewModel()
         {
+            Games = new ObservableCollection<Game>();
             LoadGames();
         }
 
@@ -24,7 +25,11 @@ namespace WCFGameLibrary.Client
             WCFGameLibraryServiceClient proxy = new WCFGameLibraryServiceClient();
             try
             {
-                Games = await proxy.GetAllGamesAsync();
+                var newGames = await proxy.GetAllGamesAsync();
+                foreach (var game in newGames)
+                {
+                    Games.Add(game);
+                }
             }
             catch (Exception ex)
             {
