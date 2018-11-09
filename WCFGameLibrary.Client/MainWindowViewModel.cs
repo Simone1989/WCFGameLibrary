@@ -10,23 +10,26 @@ using WCFGameLibrary.Model;
 
 namespace WCFGameLibrary.Client
 {
-    public class MainWindowViewModel
+    public class MainWindowViewModel : ViewModelBase
     {
+        private Game _selectedGame;
+
         public MainWindowViewModel()
         {
             Games = new ObservableCollection<Game>();
-            LoadGames();
+            LoadAsync();
         }
 
         public ObservableCollection<Game> Games { get; set; }
 
-        private async void LoadGames()
+        public async void LoadAsync()
         {
             WCFGameLibraryServiceClient proxy = new WCFGameLibraryServiceClient();
             try
             {
-                var newGames = await proxy.GetAllGamesAsync();
-                foreach (var game in newGames)
+                var getGames = await proxy.GetAllGamesAsync();
+                Games.Clear();
+                foreach (var game in getGames)
                 {
                     Games.Add(game);
                 }
@@ -40,5 +43,16 @@ namespace WCFGameLibrary.Client
                 proxy.Close();
             }
         }
+
+        public Game SelectedGame
+        {
+            get { return _selectedGame; }
+            set
+            {
+                _selectedGame = value;
+                OnPropertyChanged();
+            }
+        }
+
     }
 }
