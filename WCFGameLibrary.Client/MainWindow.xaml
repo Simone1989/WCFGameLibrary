@@ -5,15 +5,57 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WCFGameLibrary.Client"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Game Library" Height="400" Width="700" FontSize="18" FontFamily="Calibri">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
         <ListBox x:Name="list_Games" 
-                 HorizontalAlignment="Left" 
-                 Height="334" 
-                 Margin="23,30,0,0" 
-                 VerticalAlignment="Top" Width="218"
+                 Grid.Column="0"
+                 Margin="20, 20, 0, 20"
+                 Background="LightSlateGray"
+                 Foreground="White"
                  ItemsSource="{Binding Games}"
+                 SelectedItem="{Binding SelectedGame, Mode=TwoWay}"
                  DisplayMemberPath="Title"/>
+
+        <Grid Grid.Column="1" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0"
+               Content="Title:"
+               Margin="20,10,0,0"/>
+            <TextBlock Grid.Row="1"
+                 Text="{Binding SelectedGame.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 Margin="20,0,20,0" Background="SlateGray" Foreground="White" Padding="10,5,5,5"/>
+
+            <Label Grid.Row="2"
+               Content="Description:"
+               Margin="20,10,0,0"/>
+            <TextBlock Grid.Row="3" Text="{Binding SelectedGame.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                       Margin="20,0,20,0" Background="SlateGray" Grid.RowSpan="3"
+                       Foreground="White" Padding="10,5,5,5"/>
+
+            <StackPanel Grid.Row="6" Orientation="Horizontal">
+                <Button Content="Save" Width="100" Height="35" Command="{Binding SaveCommand}"
+                    Foreground="DarkSlateGray" Margin="20,0,0,0"/>
+                <Button Content="Delete" Width="100" Height="35" Command="{Binding DeleteCommand}"
+                    Foreground="DarkSlateGray" Margin="25,0,25,0"/>
+                <Button Content="New game" Width="100" Height="35" Command="{Binding DeleteCommand}"
+                    Foreground="DarkSlateGray" Margin="0,0,0,0"/>
+            </StackPanel>
+
+        </Grid>
 
     </Grid>
 </Window>

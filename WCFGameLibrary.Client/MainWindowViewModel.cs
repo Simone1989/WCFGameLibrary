@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Prism.Commands;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using WCFGameLibrary.Client.WCFGameLibraryServices;
 using WCFGameLibrary.Model;
 
@@ -17,7 +19,18 @@ namespace WCFGameLibrary.Client
         public MainWindowViewModel()
         {
             Games = new ObservableCollection<Game>();
-            LoadAsync();
+
+            SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
+        }
+
+        private bool OnSaveCanExecute()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void OnSaveExecute()
+        {
+            throw new NotImplementedException();
         }
 
         public ObservableCollection<Game> Games { get; set; }
@@ -54,5 +67,6 @@ namespace WCFGameLibrary.Client
             }
         }
 
+        public ICommand SaveCommand { get; }
     }
 }
