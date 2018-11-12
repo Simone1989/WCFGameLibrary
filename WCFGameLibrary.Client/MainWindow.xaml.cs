@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows;
+using WCFGameLibrary.Client.WCFGameLibraryServices;
+using WCFGameLibrary.Model;
 
 namespace WCFGameLibrary.Client
 {
@@ -22,7 +24,7 @@ namespace WCFGameLibrary.Client
 
         private void list_Games_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            if(list_Games.SelectedIndex != -1)
+            if (list_Games.SelectedIndex != -1)
             {
                 save_btn.IsEnabled = true;
                 delete_btn.IsEnabled = true;
@@ -31,12 +33,12 @@ namespace WCFGameLibrary.Client
 
         private void title_textbox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-            if(title_textbox.Text == "")
+            if (title_textbox.Text == "")
             {
                 title_textbox.ToolTip = "Must enter a title.";
                 save_btn.IsEnabled = false;
             }
-            else if(title_textbox.Text != "")
+            else if (title_textbox.Text != "")
             {
                 save_btn.IsEnabled = true;
             }
@@ -54,6 +56,34 @@ namespace WCFGameLibrary.Client
 
         private void edit_btn_Click(object sender, RoutedEventArgs e)
         {
+        }
+
+        private void new_btn_Click(object sender, RoutedEventArgs e)
+        {
+            delete_btn.IsEnabled = false;
+            save_btn.Visibility = Visibility.Hidden;
+            addNew_btn.Visibility = Visibility.Visible;
+            new_btn.IsEnabled = false;
+            list_Games.SelectedIndex = -1;
+            title_textbox.Text = "";
+            description_textbox.Text = "";
+        }
+
+        private void addNew_btn_Click(object sender, RoutedEventArgs e)
+        {
+
+            //Game game = new Game();
+            //game.Id = 101011;
+            //game.Title = title_textbox.Text;
+            //game.Description = description_textbox.Text;
+
+            //WCFGameLibraryServiceClient proxy = new WCFGameLibraryServiceClient();
+            //proxy.Add(game);
+            //_viewModel.LoadAsync();
+
+            //addNew_btn.Visibility = Visibility.Hidden;
+            //save_btn.Visibility = Visibility.Visible;
+            //new_btn.IsEnabled = true;
         }
     }
 }

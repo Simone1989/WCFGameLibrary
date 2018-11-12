@@ -36,13 +36,13 @@
                Content="Title:"
                Margin="20,10,0,0"/>
             <TextBox x:Name="title_textbox" Grid.Row="1"
-                 Text="{Binding SelectedGame.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 Text="{Binding SelectedGame.Title, Mode=TwoWay}"
                  Margin="20,0,20,0" Background="SlateGray" Foreground="White" Padding="10,5,5,5" TextChanged="title_textbox_TextChanged"/>
 
             <Label Grid.Row="2"
                Content="Description:"
                Margin="20,10,0,0"/>
-            <TextBox Grid.Row="3" Text="{Binding SelectedGame.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            <TextBox x:Name="description_textbox" Grid.Row="3" Text="{Binding SelectedGame.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                        Margin="20,0,20,0" Background="SlateGray" Grid.RowSpan="3"
                        Foreground="White" Padding="10,5,5,5"/>
 
@@ -51,8 +51,11 @@
                     Foreground="DarkSlateGray" Margin="20,0,0,0" IsEnabled="False"/>
                 <Button x:Name="delete_btn" Content="Delete" Width="100" Height="35" Command="{Binding DeleteCommand}"
                     Foreground="DarkSlateGray" Margin="25,0,25,0" IsEnabled="False"/>
-                <Button x:Name="new_btn" Content="New game" Width="100" Height="35" Command="{Binding NewGameCommand}"
-                    Foreground="DarkSlateGray" Margin="0,0,0,0"/>
+                <Button x:Name="new_btn" Content="New game" Width="100" Height="35" 
+                    Foreground="DarkSlateGray" Margin="0,0,0,0" Click="new_btn_Click"/>
+                <Button x:Name="addNew_btn" Content="Add new game" Width="100" Height="20"
+                        Foreground="DarkSlateGray" Margin="-100,70,0,0" FontSize="14" Click="addNew_btn_Click"
+                        Visibility="Hidden" Command="{Binding NewGameCommand}"/>
             </StackPanel>
 
         </Grid>

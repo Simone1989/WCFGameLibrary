@@ -5,6 +5,8 @@ using System.Linq;
 using System.ServiceModel;
 using WCFGameLibrary.Data;
 using WCFGameLibrary.Model;
+using System.Data.SqlClient;
+using System.Windows;
 
 namespace WCFGameLibrary.Services
 {
@@ -15,7 +17,34 @@ namespace WCFGameLibrary.Services
 
         public void Add(Game game)
         {
-            _context.Games.Add(game);
+            //using (var context = _context)
+            //{
+            //    context.Games.Attach(game);
+            //    context.Entry(game).State = EntityState.Added;
+            //    context.Games.Add(game);
+            //    context.SaveChanges();
+            //}
+
+            try
+            {
+
+                //SqlConnection con = new SqlConnection("WCFGameLibraryDb");
+                //SqlCommand cmd = new SqlCommand();
+
+                //string Query = @"INSERT INTO Games (Id, Title, Description) Values(@Id, @Title, @Description)";
+
+                //cmd = new SqlCommand(Query, con);
+                //cmd.Parameters.AddWithValue("@Id", game.Id);
+                //cmd.Parameters.AddWithValue("@Title", game.Title);
+                //cmd.Parameters.AddWithValue("@Name", game.Description);
+                //con.Open();
+                //cmd.ExecuteNonQuery();
+                //con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         public void Delete(Game game)
