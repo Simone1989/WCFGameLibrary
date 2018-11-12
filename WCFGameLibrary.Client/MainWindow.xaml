@@ -51,7 +51,7 @@
                     Foreground="DarkSlateGray" Margin="20,0,0,0" IsEnabled="False"/>
                 <Button x:Name="delete_btn" Content="Delete" Width="100" Height="35" Command="{Binding DeleteCommand}"
                     Foreground="DarkSlateGray" Margin="25,0,25,0" IsEnabled="False"/>
-                <Button x:Name="new_btn" Content="New game" Width="100" Height="35" Command="{Binding DeleteCommand}"
+                <Button x:Name="new_btn" Content="New game" Width="100" Height="35" Command="{Binding NewGameCommand}"
                     Foreground="DarkSlateGray" Margin="0,0,0,0"/>
             </StackPanel>
 

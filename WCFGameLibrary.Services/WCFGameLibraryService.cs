@@ -25,6 +25,7 @@ namespace WCFGameLibrary.Services
                 context.Games.Attach(game);
                 context.Entry(game).State = EntityState.Deleted;
                 context.Games.Remove(game);
+                context.SaveChanges();
             }
         }
         

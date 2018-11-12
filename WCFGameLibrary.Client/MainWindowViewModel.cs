@@ -20,25 +20,22 @@ namespace WCFGameLibrary.Client
         {
             Games = new ObservableCollection<Game>();
 
-            SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
+            SaveCommand = new DelegateCommand(OnSaveExecute);
             DeleteCommand = new DelegateCommand(OnDeleteExecute);
         }
 
         private void OnDeleteExecute()
         {
             WCFGameLibraryServiceClient proxy = new WCFGameLibraryServiceClient();
-            proxy.DeleteAsync(_selectedGame);
-        }
-
-        private bool OnSaveCanExecute()
-        {
-            return true;
+            proxy.Delete(_selectedGame);
+            MessageBox.Show("Game deleted.", "Delete");
+            LoadAsync();
         }
 
         private void OnSaveExecute()
         {
             SaveGameAsync();
-            MessageBox.Show("Data is saved.");
+            MessageBox.Show("Data is saved.", "Saved");
         }
 
         public ObservableCollection<Game> Games { get; set; }
