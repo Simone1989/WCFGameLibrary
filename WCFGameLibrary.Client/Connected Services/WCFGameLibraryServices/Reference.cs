@@ -34,10 +34,10 @@ namespace WCFGameLibrary.Client.WCFGameLibraryServices {
         System.Threading.Tasks.Task DeleteAsync(WCFGameLibrary.Model.Game game);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFGameLibraryService/Save", ReplyAction="http://tempuri.org/IWCFGameLibraryService/SaveResponse")]
-        void Save();
+        void Save(WCFGameLibrary.Model.Game game);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFGameLibraryService/Save", ReplyAction="http://tempuri.org/IWCFGameLibraryService/SaveResponse")]
-        System.Threading.Tasks.Task SaveAsync();
+        System.Threading.Tasks.Task SaveAsync(WCFGameLibrary.Model.Game game);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -91,12 +91,12 @@ namespace WCFGameLibrary.Client.WCFGameLibraryServices {
             return base.Channel.DeleteAsync(game);
         }
         
-        public void Save() {
-            base.Channel.Save();
+        public void Save(WCFGameLibrary.Model.Game game) {
+            base.Channel.Save(game);
         }
         
-        public System.Threading.Tasks.Task SaveAsync() {
-            return base.Channel.SaveAsync();
+        public System.Threading.Tasks.Task SaveAsync(WCFGameLibrary.Model.Game game) {
+            return base.Channel.SaveAsync(game);
         }
     }
 }

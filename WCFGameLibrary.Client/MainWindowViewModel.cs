@@ -21,28 +21,44 @@ namespace WCFGameLibrary.Client
             Games = new ObservableCollection<Game>();
 
             SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
+            DeleteCommand = new DelegateCommand(OnDeleteExecute);
+        }
+
+        private void OnDeleteExecute()
+        {
+            WCFGameLibraryServiceClient proxy = new WCFGameLibraryServiceClient();
+            proxy.DeleteAsync(_selectedGame);
         }
 
         private bool OnSaveCanExecute()
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         private void OnSaveExecute()
         {
-            throw new NotImplementedException();
+            SaveGameAsync();
+            MessageBox.Show("Data is saved.");
         }
 
         public ObservableCollection<Game> Games { get; set; }
+        public ICommand SaveCommand { get; }
+        public ICommand DeleteCommand { get; }
+
+        public async void SaveGameAsync()
+        {
+            WCFGameLibraryServiceClient proxy = new WCFGameLibraryServiceClient();
+            await proxy.SaveAsync(_selectedGame);
+        }
 
         public async void LoadAsync()
         {
             WCFGameLibraryServiceClient proxy = new WCFGameLibraryServiceClient();
             try
             {
-                var getGames = await proxy.GetAllGamesAsync();
+                var allGames = await proxy.GetAllGamesAsync();
                 Games.Clear();
-                foreach (var game in getGames)
+                foreach (var game in allGames)
                 {
                     Games.Add(game);
                 }
@@ -66,7 +82,5 @@ namespace WCFGameLibrary.Client
                 OnPropertyChanged();
             }
         }
-
-        public ICommand SaveCommand { get; }
     }
 }

@@ -17,6 +17,6 @@ namespace WCFGameLibrary.Services
         void Delete(Game game);
 
         [OperationContract]
-        void Save();
+        void Save(Game game);
     }
 }

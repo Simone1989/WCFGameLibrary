@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
@@ -8,18 +9,23 @@ using WCFGameLibrary.Model;
 namespace WCFGameLibrary.Services
 {
     [ServiceBehavior(InstanceContextMode =InstanceContextMode.PerCall)]
-    public class WCFGameLibraryService : IWCFGameLibraryService, IDisposable
+    public class WCFGameLibraryService : IWCFGameLibraryService
     {
         private readonly WCFGameLibraryDbContext _context = new WCFGameLibraryDbContext();
 
         public void Add(Game game)
         {
-            throw new NotImplementedException();
+            _context.Games.Add(game);
         }
 
         public void Delete(Game game)
         {
-            throw new NotImplementedException();
+            using (var context = _context)
+            {
+                context.Games.Attach(game);
+                context.Entry(game).State = EntityState.Deleted;
+                context.Games.Remove(game);
+            }
         }
         
         public List<Game> GetAllGames()
@@ -27,15 +33,14 @@ namespace WCFGameLibrary.Services
             return _context.Games.ToList();
         }
 
-        [OperationBehavior(TransactionScopeRequired = true)]
-        public void Save()
+        public async void Save(Game game)
         {
-            throw new NotImplementedException();
-        }
-
-        public void Dispose()
-        {
-            _context.Dispose();
+            using (var context = _context)
+            {
+                context.Games.Attach(game);
+                context.Entry(game).State = EntityState.Modified;
+                await context.SaveChangesAsync();
+            }
         }
     }
 }
