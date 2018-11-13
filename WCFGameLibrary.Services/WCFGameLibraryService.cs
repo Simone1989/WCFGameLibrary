@@ -17,29 +17,28 @@ namespace WCFGameLibrary.Services
 
         public void Add(Game game)
         {
-            //using (var context = _context)
-            //{
-            //    context.Games.Attach(game);
-            //    context.Entry(game).State = EntityState.Added;
-            //    context.Games.Add(game);
-            //    context.SaveChanges();
-            //}
+            using (var context = _context)
+            {
+                context.Games.Attach(game);
+                context.Entry(game).State = EntityState.Added;
+                context.Games.Add(game);
+                context.SaveChanges();
+            }
 
             try
             {
+                SqlConnection con = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=WCFGameLibrary;Integrated Security=True");
+                SqlCommand cmd = new SqlCommand();
 
-                //SqlConnection con = new SqlConnection("WCFGameLibraryDb");
-                //SqlCommand cmd = new SqlCommand();
+                string Query = @"INSERT INTO Games (Id, Title, Description) Values(@Id, @Title, @Description)";
 
-                //string Query = @"INSERT INTO Games (Id, Title, Description) Values(@Id, @Title, @Description)";
-
-                //cmd = new SqlCommand(Query, con);
-                //cmd.Parameters.AddWithValue("@Id", game.Id);
-                //cmd.Parameters.AddWithValue("@Title", game.Title);
-                //cmd.Parameters.AddWithValue("@Name", game.Description);
-                //con.Open();
-                //cmd.ExecuteNonQuery();
-                //con.Close();
+                cmd = new SqlCommand(Query, con);
+                cmd.Parameters.AddWithValue("@Id", game.Id);
+                cmd.Parameters.AddWithValue("@Title", game.Title);
+                cmd.Parameters.AddWithValue("@Description", game.Description);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
             }
             catch (Exception ex)
             {

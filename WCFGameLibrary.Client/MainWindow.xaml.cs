@@ -72,18 +72,21 @@ namespace WCFGameLibrary.Client
         private void addNew_btn_Click(object sender, RoutedEventArgs e)
         {
 
-            //Game game = new Game();
-            //game.Id = 101011;
-            //game.Title = title_textbox.Text;
-            //game.Description = description_textbox.Text;
+            Game game = new Game
+            {
+                Title = title_textbox.Text,
+                Description = description_textbox.Text
+            };
 
-            //WCFGameLibraryServiceClient proxy = new WCFGameLibraryServiceClient();
-            //proxy.Add(game);
-            //_viewModel.LoadAsync();
+            WCFGameLibraryServiceClient proxy = new WCFGameLibraryServiceClient();
+            proxy.Add(game);
+            _viewModel.LoadAsync();
 
-            //addNew_btn.Visibility = Visibility.Hidden;
-            //save_btn.Visibility = Visibility.Visible;
-            //new_btn.IsEnabled = true;
+            addNew_btn.Visibility = Visibility.Hidden;
+            save_btn.Visibility = Visibility.Visible;
+            new_btn.IsEnabled = true;
+
+            MessageBox.Show("Game added.", "New game");
         }
     }
 }
