@@ -17,6 +17,7 @@ namespace WCFGameLibrary.Client
             Loaded += MainWindow_Loaded;
         }
 
+
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             _viewModel.LoadAsync();
@@ -37,25 +38,18 @@ namespace WCFGameLibrary.Client
             {
                 title_textbox.ToolTip = "Must enter a title.";
                 save_btn.IsEnabled = false;
+                addNew_btn.IsEnabled = false;
             }
             else if (title_textbox.Text != "")
             {
                 save_btn.IsEnabled = true;
+                addNew_btn.IsEnabled = true;
             }
-        }
-
-        private void delete_btn_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void save_btn_Click(object sender, RoutedEventArgs e)
         {
             save_btn.IsEnabled = false;
-        }
-
-        private void edit_btn_Click(object sender, RoutedEventArgs e)
-        {
         }
 
         private void new_btn_Click(object sender, RoutedEventArgs e)
@@ -85,6 +79,9 @@ namespace WCFGameLibrary.Client
             addNew_btn.Visibility = Visibility.Hidden;
             save_btn.Visibility = Visibility.Visible;
             new_btn.IsEnabled = true;
+
+            title_textbox.Text = "";
+            description_textbox.Text = "";
 
             MessageBox.Show("Game added.", "New game");
         }

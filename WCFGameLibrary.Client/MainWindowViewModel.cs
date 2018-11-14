@@ -22,15 +22,7 @@ namespace WCFGameLibrary.Client
 
             SaveCommand = new DelegateCommand(OnSaveExecute);
             DeleteCommand = new DelegateCommand(OnDeleteExecute);
-            //NewGameCommand = new DelegateCommand(OnNewGameExecute);
         }
-
-        //private void OnNewGameExecute()
-        //{
-        //    CreateNewGame();
-        //    MessageBox.Show("Game added.", "Add game");
-        //    LoadAsync();
-        //}
 
         private void OnDeleteExecute()
         {
@@ -47,19 +39,9 @@ namespace WCFGameLibrary.Client
             LoadAsync();
         }
 
-        //private Game CreateNewGame()
-        //{
-        //    WCFGameLibraryServiceClient proxy = new WCFGameLibraryServiceClient();
-
-        //    var game = new Game();
-        //    proxy.Add(game);
-        //    return game;
-        //}
-
         public ObservableCollection<Game> Games { get; set; }
         public ICommand SaveCommand { get; }
         public ICommand DeleteCommand { get; }
-        //public ICommand NewGameCommand { get; }
 
         public async void SaveGameAsync()
         {

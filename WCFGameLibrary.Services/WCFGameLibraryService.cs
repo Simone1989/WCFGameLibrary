@@ -24,26 +24,6 @@ namespace WCFGameLibrary.Services
                 context.Games.Add(game);
                 context.SaveChanges();
             }
-
-            try
-            {
-                SqlConnection con = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=WCFGameLibrary;Integrated Security=True");
-                SqlCommand cmd = new SqlCommand();
-
-                string Query = @"INSERT INTO Games (Id, Title, Description) Values(@Id, @Title, @Description)";
-
-                cmd = new SqlCommand(Query, con);
-                cmd.Parameters.AddWithValue("@Id", game.Id);
-                cmd.Parameters.AddWithValue("@Title", game.Title);
-                cmd.Parameters.AddWithValue("@Description", game.Description);
-                con.Open();
-                cmd.ExecuteNonQuery();
-                con.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
         }
 
         public void Delete(Game game)
