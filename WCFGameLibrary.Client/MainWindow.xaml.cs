@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using WCFGameLibrary.Client.WCFGameLibraryServices;
 using WCFGameLibrary.Model;
 
@@ -65,7 +64,6 @@ namespace WCFGameLibrary.Client
 
         private void addNew_btn_Click(object sender, RoutedEventArgs e)
         {
-
             Game game = new Game
             {
                 Title = title_textbox.Text,

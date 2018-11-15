@@ -1,16 +1,13 @@
-﻿using System;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
 using WCFGameLibrary.Data;
 using WCFGameLibrary.Model;
-using System.Data.SqlClient;
-using System.Windows;
 
 namespace WCFGameLibrary.Services
 {
-    [ServiceBehavior(InstanceContextMode =InstanceContextMode.PerCall)]
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
     public class WCFGameLibraryService : IWCFGameLibraryService
     {
         private readonly WCFGameLibraryDbContext _context = new WCFGameLibraryDbContext();
@@ -36,10 +33,13 @@ namespace WCFGameLibrary.Services
                 context.SaveChanges();
             }
         }
-        
+
         public List<Game> GetAllGames()
         {
-            return _context.Games.ToList();
+            using (var context = _context)
+            {
+                return context.Games.ToList();
+            }
         }
 
         public async void Save(Game game)
